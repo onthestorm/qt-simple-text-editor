@@ -11,15 +11,16 @@ filemanager::filemanager(QTextEdit *te) {
 }
 
 QString filemanager::openFile(QString file) {
-    if(!file.isEmpty()) {
+    QString text;
+    if(file.isEmpty()) {
         QFile sFile(file);
         if(sFile.open(QFile::ReadOnly | QFile::Text)) {
             QTextStream in (&sFile);
-            QString text = in.readAll();
+            text = in.readAll();
             sFile.close();
-            return text;
         }
     }
+    return text;
 }
 
 void filemanager::saveFile(QString file) {
