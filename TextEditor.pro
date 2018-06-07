@@ -30,7 +30,6 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    filemanager.h \
     filemanager.h
 
 FORMS += \

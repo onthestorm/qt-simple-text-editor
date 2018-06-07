@@ -16,44 +16,27 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_triggered()
 {
-    fileName = ""; // делаем переменную названия файла пустой
-    ui->textEdit->setPlainText(""); // делаем textedit пустым
+    ui->textEdit->setPlainText("");
+    fileName = "";
 }
-
 
 void MainWindow::on_actionOpen_triggered()
 {
-    QString file = QFileDialog::getOpenFileName(this, "Open a file");
-    if(!file.isEmpty()) {
-        QFile sFile(file);
-        if(sFile.open(QFile::ReadOnly | QFile::Text)) {
-            fileName = file;
-            QTextStream in (&sFile);
-            QString text = in.readAll();
-            sFile.close();
-            ui->textEdit->setPlainText(text);
-        }
-    }
+    fileName = QFileDialog::getOpenFileName(this, "Open a file");
+    ui->textEdit->setPlainText(filemanager::openFile(fileName));
 }
 
 void MainWindow::on_actionSave_triggered()
 {
-    QFile sFile(fileName);
-    if(sFile.open(QFile::WriteOnly | QFile::Text)) {
-        QTextStream out(&sFile);
-        out << ui->textEdit->toPlainText(); // !!
-        sFile.flush();
-        sFile.close();
-    }
+    filemanager file(ui->textEdit);
+    file.saveFile(fileName);
 }
 
 void MainWindow::on_actionSave_as_triggered()
 {
-    QString file = QFileDialog::getSaveFileName(this, "Save a file");
-    if(!file.isEmpty()) {
-       fileName = file;
-       on_actionSave_triggered();
-    }
+    fileName = QFileDialog::getSaveFileName(nullptr, "Save a file");
+    filemanager file(ui->textEdit);
+    file.saveAsFile(fileName);
 }
 
 void MainWindow::on_actionExit_triggered()

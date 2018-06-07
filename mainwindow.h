@@ -2,12 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QFileDialog>
-#include <QTextStream>
-#include <QFontDialog>
-#include <QColorDialog>
-#include <QFont>
-#include <QTextCharFormat>
+#include <filemanager.h>
+
 
 
 namespace Ui {
