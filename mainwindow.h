@@ -2,9 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <filemanager.h>
-
-
+#include "filemanager.h"
+#include "textmanager.h"
 
 namespace Ui {
 class MainWindow;
@@ -47,7 +46,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QString fileName; // переменная для имени файла
+    QString fileName;
 };
 
 #endif // MAINWINDOW_H

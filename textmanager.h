@@ -9,7 +9,6 @@
 class textmanager
 {
 public:
-    textmanager();
     static QColor changeColor();
     static QFont changeFont();
 };

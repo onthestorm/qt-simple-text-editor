@@ -5,21 +5,12 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QTextStream>
-#include <QString>
-#include <QFontDialog>
-#include <QColorDialog>
-#include <QFont>
-#include <QTextCharFormat>
 
 class filemanager
 {
-private:
-    QTextEdit * _te;
 public:
-    filemanager();
-    filemanager(QTextEdit *te);
-    static QString openFile(QString file);
-    void saveFile(QString file);
-    void saveAsFile(QString file);
+    static QString openFile(QString fileName);
+    static void saveFile(QString fileName, QString text);
+    static void saveAsFile(QString fileName, QString text);
 };
 #endif // FILEMANAGER_H

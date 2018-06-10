@@ -1,10 +1,5 @@
 #include "textmanager.h"
 
-textmanager::textmanager()
-{
-
-}
-
 QColor textmanager::changeColor() {
     QColor color = QColorDialog::getColor(Qt::white);
     if(color.isValid()) {

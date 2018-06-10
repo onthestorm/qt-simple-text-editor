@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    filemanager.cpp
+    filemanager.cpp \
+    textmanager.cpp
 
 HEADERS += \
         mainwindow.h \
-    filemanager.h
+    filemanager.h \
+    textmanager.h
 
 FORMS += \
         mainwindow.ui

@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setCentralWidget(ui->textEdit); // ставим textedit центральным виджетом
+    this->setCentralWidget(ui->textEdit);
 }
 
 MainWindow::~MainWindow()
@@ -22,21 +22,21 @@ void MainWindow::on_actionNew_triggered()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    fileName = QFileDialog::getOpenFileName(this, "Open a file");
+    QString fileName = QFileDialog::getOpenFileName(this, "Open a file");
     ui->textEdit->setPlainText(filemanager::openFile(fileName));
 }
 
 void MainWindow::on_actionSave_triggered()
 {
-    filemanager file(ui->textEdit);
-    file.saveFile(fileName);
+    QString text = ui->textEdit->toPlainText();
+    filemanager::saveFile(fileName, text);
 }
 
 void MainWindow::on_actionSave_as_triggered()
 {
-    fileName = QFileDialog::getSaveFileName(nullptr, "Save a file");
-    filemanager file(ui->textEdit);
-    file.saveAsFile(fileName);
+    fileName = QFileDialog::getSaveFileName(this, "Save a file");
+    QString text = ui->textEdit->toPlainText();
+    filemanager::saveAsFile(fileName, text);
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -76,17 +76,10 @@ void MainWindow::on_actionDelete_triggered()
 
 void MainWindow::on_actionFont_triggered()
 {
-    bool check;
-    QFont font = QFontDialog::getFont(&check, this);
-    if(check) {
-        ui->textEdit->setFont(font);
-    }
+    ui->textEdit->setFont(textmanager::changeFont());
 }
 
 void MainWindow::on_actionColor_triggered()
 {
-    QColor color = QColorDialog::getColor(Qt::white, this);
-    if(color.isValid()) {
-        ui->textEdit->setTextColor(color);
-    }
+    ui->textEdit->setTextColor(textmanager::changeColor());
 }

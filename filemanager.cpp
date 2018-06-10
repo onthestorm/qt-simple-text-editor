@@ -1,40 +1,30 @@
 #include "filemanager.h"
-#include <iostream>
 
-filemanager::filemanager()
-{
-
-}
-
-filemanager::filemanager(QTextEdit *te) {
-    _te = te;
-}
-
-QString filemanager::openFile(QString file) {
-    QString text;
-    if(file.isEmpty()) {
-        QFile sFile(file);
+QString filemanager::openFile(QString fileName) {
+    QString returnText;
+    if(!fileName.isEmpty()) {
+        QFile sFile(fileName);
         if(sFile.open(QFile::ReadOnly | QFile::Text)) {
             QTextStream in (&sFile);
-            text = in.readAll();
+            returnText = in.readAll();
             sFile.close();
         }
     }
-    return text;
+    return returnText;
 }
 
-void filemanager::saveFile(QString file) {
-    QFile sFile(file);
+void filemanager::saveFile(QString fileName, QString text) {
+    QFile sFile(fileName);
     if(sFile.open(QFile::WriteOnly | QFile::Text)) {
         QTextStream out(&sFile);
-        out << _te->toPlainText();
+        out << text;
         sFile.flush();
         sFile.close();
     }
 }
 
-void filemanager::saveAsFile(QString file) {
-    if(!file.isEmpty()) {
-       saveFile(file);
+void filemanager::saveAsFile(QString fileName, QString text) {
+    if(!fileName.isEmpty()) {
+       saveFile(fileName, text);
     }
 }
