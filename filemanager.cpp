@@ -1,6 +1,6 @@
 #include "filemanager.h"
 
-QString filemanager::openFile(QString fileName) {
+QString filemanager::openFile(QString &fileName) {
     QString returnText;
     if(!fileName.isEmpty()) {
         QFile sFile(fileName);
@@ -13,7 +13,7 @@ QString filemanager::openFile(QString fileName) {
     return returnText;
 }
 
-void filemanager::saveFile(QString fileName, QString text) {
+void filemanager::saveFile(QString & fileName, QString & text) {
     QFile sFile(fileName);
     if(sFile.open(QFile::WriteOnly | QFile::Text)) {
         QTextStream out(&sFile);
@@ -23,7 +23,7 @@ void filemanager::saveFile(QString fileName, QString text) {
     }
 }
 
-void filemanager::saveAsFile(QString fileName, QString text) {
+void filemanager::saveAsFile(QString &fileName, QString &text) {
     if(!fileName.isEmpty()) {
        saveFile(fileName, text);
     }
